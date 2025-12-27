@@ -17,10 +17,10 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
         path: bindiff
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
         repository: google/binexport
         path: binexport
@@ -44,7 +44,7 @@ jobs:
 
     - name: Enable Developer Command Prompt (Windows)
       if: matrix.os == 'windows-2022'
-      uses: ilammy/msvc-dev-cmd@v1.12.1
+      uses: ilammy/msvc-dev-cmd@v1.13.0
 
     - name: Enable mold linker (Linux)
       if: matrix.os == 'ubuntu-22.04'
@@ -69,7 +69,7 @@ jobs:
       run: ctest --build-config "${BUILD_TYPE}" --output-on-failure -R '^[A-Z]'
 
     - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
         name: BinDiff-${{ runner.os }}
         path: |
